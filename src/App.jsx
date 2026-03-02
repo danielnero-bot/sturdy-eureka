@@ -1,25 +1,34 @@
-import './App.css'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import World from './components/World'
-import Conflict from './components/Conflict'
+import Home from './pages/Home'
 import Characters from './components/Characters'
+import CharacterPage from './pages/characterpage'
 
 function App() {
+  const { pathname } = useLocation();
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className="bg-deep-black min-h-screen text-off-white selection:bg-blood-red selection:text-white antialiased">
       <Navbar />
       
       <main>
-        <Hero />
-        <World />
-        <Conflict />
-        <Characters />
-        
-        {/* Future sections like Titans, etc. */}
+        <Routes>
+          {/* Fallback to Home or a 404 page */}
+          <Route path="*" element={<Home />} />
+
+          {/* Home page */}
+          <Route path="/" element={<Home />} />
+
+          {/* Characters page */}
+          <Route path="/characters" element={<CharacterPage />} />
+        </Routes>
       </main>
-      
-      {/* Scroll indicator for the whole page or global elements can go here */}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import wallsImg from '../assets/walls.png'
@@ -17,7 +17,7 @@ const World = () => {
   const conflictTextRef = useRef(null)
   const conflictImageRef = useRef(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Title and Intro Animation
       gsap.fromTo([titleRef.current, introRef.current], 
@@ -129,7 +129,7 @@ const World = () => {
             <div 
               key={wall.name}
               ref={el => wallCardsRef.current[index] = el}
-              className="group relative h-[450px] bg-ash-gray border border-white/5 rounded-sm overflow-hidden flex flex-col justify-end p-8 transition-all duration-500 hover:border-blood-red/30"
+              className="group relative h-[350px] md:h-[450px] bg-ash-gray border border-white/5 rounded-sm overflow-hidden flex flex-col justify-end p-6 md:p-8 transition-all duration-500 hover:border-blood-red/30"
             >
               {/* Card Image Background */}
               <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-transparent to-transparent z-10"></div>
@@ -138,10 +138,10 @@ const World = () => {
               ></div>
               
               <div className="relative z-20">
-                <span className="text-blood-red text-[10px] uppercase tracking-[0.4em] font-black mb-2 block">
+                <span className="text-blood-red text-[8px] md:text-[10px] uppercase tracking-[0.4em] font-black mb-2 block">
                   {wall.distance}
                 </span>
-                <h3 className="text-2xl font-black uppercase tracking-widest text-off-white mb-4  transition-colors">
+                <h3 className="text-xl md:text-2xl font-black uppercase tracking-widest text-off-white mb-4  transition-colors">
                   {wall.name}
                 </h3>
                 <p className="text-steel-silver text-xs leading-relaxed uppercase tracking-widest font-bold">

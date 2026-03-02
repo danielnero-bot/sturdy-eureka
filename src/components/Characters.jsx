@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import erenImg from '../assets/ereny.png';
@@ -72,7 +72,7 @@ const Characters = () => {
 
     const visibleCharacters = showAll ? characters : characters.slice(0, 3);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             // Entrance Title
             gsap.fromTo(titleRef.current, 
@@ -169,12 +169,11 @@ const Characters = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 char-grid">
-                    {visibleCharacters.map((char, index) => (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 char-grid">
+                    {visibleCharacters.map((char) => (
                         <div 
                             key={char.id}
                             className="char-card group relative aspect-[3/4] overflow-hidden bg-ash-gray border border-white/5 cursor-crosshair"
-                            onMouseEnter={() => setActiveIndex(index)}
                         >
                             {/* Character Image */}
                             <div 

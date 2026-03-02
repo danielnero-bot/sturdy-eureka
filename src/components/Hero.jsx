@@ -75,13 +75,13 @@ const Hero = () => {
         <h1 className="overflow-hidden leading-[0.8] mb-8">
           <span 
             ref={title1Ref}
-            className="block text-6xl md:text-[10rem] font-black uppercase tracking-tighter text-off-white italic drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
+            className="block text-5xl sm:text-7xl md:text-[10rem] font-black uppercase tracking-tighter text-off-white italic drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
           >
             Freedom
           </span>
           <span 
             ref={title2Ref}
-            className="block text-6xl md:text-[10rem] font-black uppercase tracking-tighter text-blood-red italic drop-shadow-[0_10px_40px_rgba(139,0,0,0.4)]"
+            className="block text-5xl sm:text-7xl md:text-[10rem] font-black uppercase tracking-tighter text-blood-red italic drop-shadow-[0_10px_40px_rgba(139,0,0,0.4)]"
           >
             Is Death
           </span>
@@ -90,7 +90,7 @@ const Hero = () => {
         {/* Subheading */}
         <p 
           ref={subTextRef}
-          className="max-w-xl mx-auto text-steel-silver text-xs md:text-sm tracking-[0.3em] leading-loose uppercase font-bold mb-12 opacity-80"
+          className="max-w-xl mx-auto text-[10px] md:text-sm tracking-[0.2em] md:tracking-[0.3em] leading-loose uppercase font-bold mb-12 opacity-80"
         >
           "If you win, you live. If you lose, you die. If you don't fight, you can't win."
         </p>
