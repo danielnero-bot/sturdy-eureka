@@ -1,0 +1,79 @@
+import React, { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { Link } from 'react-router-dom'
+import Logo from '../assets/image.png' 
+
+const Navbar = () => {
+  const navRef = useRef(null)
+  const menuItemsRef = useRef([])
+
+  useEffect(() => {
+    // Entrance animation
+    const tl = gsap.timeline()
+    
+    tl.fromTo(navRef.current, 
+      { y: -100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.2, ease: "power4.out" }
+    )
+    .fromTo(menuItemsRef.current,
+      { y: -20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" },
+      "-=0.6"
+    )
+  }, [])
+
+  const navLinks = [
+    { name: 'Home', to: '/' },
+    { name: 'Characters', to: '/characters' },
+    { name: 'Timeline', to: '/timeline' },
+    { name: 'Quotes', to: '/quotes' },
+    { name: 'Titans', to: '/titans' },
+    { name: 'Gallery', to: '/gallery' },
+  ]
+
+  return (
+    <nav 
+      ref={navRef}
+      className="fixed top-0 left-0 w-full z-50 bg-deep-black/80 backdrop-blur-xl border-b border-white/5 px-6 lg:px-12 py-4 shadow-2xl"
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Logo */}
+        <Link to="/" className="flex-shrink-0 group cursor-pointer">
+          <img 
+            src={Logo} 
+            alt="AOT Logo" 
+            className="h-10 w-auto filter brightness-110 contrast-125 transition-transform duration-500 group-hover:scale-110"
+          />
+        </Link>
+
+        {/* Menu Items */}
+        <ul className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link, index) => (
+            <li 
+              key={link.name}
+              ref={el => menuItemsRef.current[index] = el}
+            >
+              <Link 
+                to={link.to}
+                className="text-steel-silver hover:text-blood-red font-bold tracking-[0.2em] text-[10px] uppercase transition-all duration-300 relative group py-2"
+              >
+                {link.name}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-blood-red transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Action Button */}
+        <div ref={el => menuItemsRef.current[navLinks.length] = el}>
+          <button className="relative group px-6 py-2 bg-blood-red text-off-white text-[10px] uppercase tracking-[0.2em] font-black overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(139,0,0,0.5)] active:scale-95 border border-white/10">
+            <span className="relative z-10 transition-transform duration-500 group-hover:translate-x-1 inline-block">Enter the Walls</span>
+            <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
+          </button>
+        </div>
+      </div>
+    </nav>
+  )
+}
+
+export default Navbar
